@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<!-- THIS REPRESENTS A LEGITIMATE WEBSITE WITH A MESSAGE INJECTION FLAW (NO XSS)-->
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+form {border: 3px solid #f1f1f1;width: 50%}
+
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f44336;
+}
+
+.container{
+  width: 50%;
+}
+
+span.passwordvalue {
+  float: right;
+  padding-top: 16px;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.passwordvalue {
+     display: block;
+     float: none;
+  }
+  .cancelbtn {
+     width: 100%;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Made up name of legitimate company-->
+<h2>SOLIDUX Enterprises</h2>
+
+<!-- result of message injection via ?msg=<payload> -->
+<span id="errmssg" style="display:none;color: red"></span>
+
+<form onsubmit="specialsubmit();return false;">
+<img src="building.jpg" style="float:right">
+
+
+  <!-- none of the following elements are actually used -->
+  <!-- this is just to represent a basic login form on a legit site, 
+    on a page that happens to be vulnerable to message injection via ?msg=<payload>-->
+  <div class="container">
+    <label for="usernamevalue"><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" name="usernamevalue" required>
+
+    <label for="passwordvalue"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="passwordvalue" required>
+        
+    <button type="submit">Login</button>
+    <label>
+      <input type="checkbox" checked="checked" name="remember"> Remember me
+    </label>
+  </div>
+
+  <div class=container>
+    <button type="button" class="cancelbtn">Cancel</button>
+    <span class="passwordvalue">Forgot <a href="#">password?</a></span>
+  </div>
+</form>
+
+
+<script type="text/javascript" src="purify.js"></script>
+<script>
+  const params = new URLSearchParams(window.location.search);
+
+  //obtain custom msg if present
+  if(params.get('msg')) {
+    document.getElementById('errmssg').style.display='block';
+    document.getElementById('errmssg').innerHTML=DOMPurify.sanitize(params.get('msg')); 
+  }
+
+  //this is just to show that msg can be manipulated even though there is no XSS
+  /* try ?msg=Please%20visit%20our%20new%20login%20portal%20%3Ca%20href=%22index.html%22%3Ehere%3Ca/%3E */
+  var specialsubmit=function() {
+    window.location.replace('legit.html?msg=Wrong Username or Password');
+  }
+</script>
+</body>
+</html>

