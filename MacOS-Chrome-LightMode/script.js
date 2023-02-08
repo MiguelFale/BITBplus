@@ -58,3 +58,185 @@ function enlarge(){
     $("#maximize").addClass("enlarged");
   }
 }
+
+// cert-specific - hover verified by
+$("#ssl-padlock").hover(function(){
+  if($("#verified-by").css("display") == "none") {
+    setTimeout(delaypadlockinfo, 500);
+  } else {
+    setTimeout(delaypadlockinfo, 0);
+  }
+  function delaypadlockinfo() {
+    if($("#verified-by").css("display") == "none"){
+      $("#verified-by").css("display", "block");
+    } else {
+      $("#verified-by").css("display", "none");
+    }
+  } 
+});
+
+// cert-specific - certificate box
+let box = document.getElementById('certificate-box'),
+btn = document.getElementById('ssl-padlock');
+
+btn.addEventListener('click', function (e) {
+  if (box.classList.contains('hidden')) {
+    box.classList.remove('hidden');
+    setTimeout(function () {
+      box.classList.remove('visuallyhidden');
+    }, 20);
+    console.log("shown with anim");
+  } else {
+    box.classList.add('visuallyhidden');    
+    box.addEventListener('transitionend', function(e) {
+      box.classList.add('hidden');
+    }, {
+      capture: false,
+      once: true,
+      passive: false
+    });
+    console.log("hidden with anim")
+  }
+  
+}, false);
+
+
+var highlightcolorlol = "#C3C3C3"
+var normalcolorlol = "white"
+// cert-specific - light up
+$("#lightup").mouseenter(function(){
+  $("#lightup").css("backgroundColor", highlightcolorlol);
+  $("#spanconsec").css("backgroundColor", highlightcolorlol);
+  $("#anotherpadloc").css("backgroundColor", highlightcolorlol);
+  $("#arrow").css("backgroundColor", highlightcolorlol);
+});
+$("#lightup").mouseleave(function(){
+  $("#lightup").css("backgroundColor", normalcolorlol);
+  $("#spanconsec").css("backgroundColor", normalcolorlol);
+  $("#anotherpadloc").css("backgroundColor", normalcolorlol);
+  $("#arrow").css("backgroundColor", normalcolorlol);
+});
+
+
+////////////////////////////clicks outside/////////////////////
+// cert-specific - clicks outside and outside iframe to hide again
+document.addEventListener('click', function(event) {
+  box.classList.add('visuallyhidden');    
+  console.log(event.srcElement.id);
+
+  if(event.srcElement.id=="spanconsec" || event.srcElement.id=="arrow"){
+    $("#lightup").css("backgroundColor", normalcolorlol);
+    $("#spanconsec").css("backgroundColor", normalcolorlol);
+    $("#anotherpadloc").css("backgroundColor", normalcolorlol);
+    $("#arrow").css("backgroundColor", normalcolorlol);
+    box.classList.remove('hidden');
+    setTimeout(function () {
+      box.classList.remove('visuallyhidden');
+    }, 20);
+    console.log("edited and shown with anim");
+    $("#certificate-box").css("height", "20%");
+    $("#certificate-box").css("line-height", "35px");
+    document.getElementById('siteinfocert').innerHTML="<span id='span2'><span id='arrow2'><</span><span id='consec2'>Connection security for XX-DOMAIN-NAME-XX</span></span>";
+    document.getElementById('spanconsec').innerHTML="<span id='yasccsit'>You are securely connected to this site. <div id='verfinal'>Verified by: &lt;insert CA here&gt;</div></span>";
+    document.getElementById('lightup').id = 'lightup2';
+    document.getElementById('spanconsec').id = 'spanconsec2';
+    document.getElementById('anotherpadloc').id = 'anotherpadloc2';
+    $("#arrow2").mouseenter(function(){
+      console.log("I ENTERED B")
+      $("#arrow2").css("backgroundColor", highlightcolorlol);
+    });
+    $("#arrow2").mouseleave(function(){
+      $("#arrow2").css("backgroundColor", normalcolorlol);
+    });
+    return
+  } else if (event.srcElement.id=="arrow2") {
+    box.classList.remove('hidden');
+    setTimeout(function () {
+      box.classList.remove('visuallyhidden');
+    }, 20);
+    console.log("edited and shown with anim");
+    $("#certificate-box").css("height", "16%");
+    $("#certificate-box").css("line-height", "50px");
+    document.getElementById('siteinfocert').innerHTML="Site information for XX-DOMAIN-NAME-XX";
+    document.getElementById('spanconsec2').innerHTML="Connection secure<span id='arrow'>></span>";
+    document.getElementById('lightup2').id = 'lightup';
+    document.getElementById('spanconsec2').id = 'spanconsec';
+    document.getElementById('anotherpadloc2').id = 'anotherpadloc';
+    return
+  } else if(event.srcElement.id=="siteinfocert" || event.srcElement.id=="certificate-box" || event.srcElement.id=="anotherpadloc"|| event.srcElement.id=="consec2"|| event.srcElement.id=="anotherpadloc2" || event.srcElement.id=="spanconsec2" || event.srcElement.id=="yasccsit"|| event.srcElement.id=="verfinal"){
+
+    
+    box.classList.remove('hidden');
+    box.classList.remove('visuallyhidden');
+    return
+  }
+
+  if( event.srcElement.id!="arrow" && event.srcElement.id!="spanconsec"){
+    box.addEventListener('transitionend', function(e) {
+      console.log("transend")
+      console.log(e.srcElement);
+      $("#certificate-box").css("height", "16%");
+      $("#certificate-box").css("line-height", "50px");
+      document.getElementById('siteinfocert').innerHTML="Site information for XX-DOMAIN-NAME-XX";
+
+      if(document.getElementById('spanconsec2')!=null)document.getElementById('spanconsec2').innerHTML="Connection secure<span id='arrow'>></span>";
+      if(document.getElementById('lightup2')!=null)document.getElementById('lightup2').id = 'lightup';
+      if(document.getElementById('spanconsec2')!=null)document.getElementById('spanconsec2').id = 'spanconsec';
+      if(document.getElementById('anotherpadloc2')!=null)document.getElementById('anotherpadloc2').id = 'anotherpadloc';
+      box.classList.add('hidden');
+    }
+    , {
+      capture: false,
+      once: true,
+      passive: false
+    });
+  }
+  console.log("hidden with anim");
+});
+
+
+//click outside but in iframe
+var iframeclickbehaviourobj = {
+  iframeMouseOver : false
+}
+window.addEventListener('blur',function(e){
+  console.log(e.srcElement);
+
+  if(iframeclickbehaviourobj.iframeMouseOver){
+    console.log("transend")
+    console.log(e.srcElement);
+    if( event.srcElement.id!="arrow" && event.srcElement.id!="spanconsec"){
+      $("#certificate-box").css("height", "16%");
+      $("#certificate-box").css("line-height", "50px");
+      document.getElementById('siteinfocert').innerHTML="Site information for XX-DOMAIN-NAME-XX";
+
+      if(document.getElementById('spanconsec2')!=null)document.getElementById('spanconsec2').innerHTML="Connection secure<span id='arrow'>></span>";
+      if(document.getElementById('lightup2')!=null)document.getElementById('lightup2').id = 'lightup';
+      if(document.getElementById('spanconsec2')!=null)document.getElementById('spanconsec2').id = 'spanconsec';
+      if(document.getElementById('anotherpadloc2')!=null)document.getElementById('anotherpadloc2').id = 'anotherpadloc';
+      box.classList.add('visuallyhidden'); 
+      box.addEventListener('transitionend', function(e) {
+        console.log(e.srcElement);
+        box.classList.add('hidden');
+      }, {
+        capture: false,
+        once: true,
+        passive: false
+      });
+    }
+  }
+});
+
+document.getElementById('content').addEventListener('mouseover',function(){
+ iframeclickbehaviourobj.iframeMouseOver = true;
+
+});
+document.getElementById('content').addEventListener('mouseout',function(){
+  iframeclickbehaviourobj.iframeMouseOver = false;
+
+});
+
+//// Pop-up appear on click with delay ////
+$("#clickme").click(function(){
+    $("#window").fadeIn(300);
+  });
